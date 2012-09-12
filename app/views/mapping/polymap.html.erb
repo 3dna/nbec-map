@@ -1,0 +1,10 @@
+<%= render :partial => 'shared/mapping/nav' %>
+<%#= candidate_connect_button %>
+<%= render :partial => 'shared/candidate_connect' %>
+<div style="height: 400px" id="map"></div>
+<div class="well">
+  <button id="toggle_federal" type="button" class="btn" data-toggle="button">Federal</button>
+  <button id="toggle_upper_state" type="button" class="btn" data-toggle="button">Upper State</button>
+  <button id="toggle_lower_state" type="button" class="btn active" data-toggle="button">Lower State</button>
+  <span id="feature_desc"></span>
+</div>

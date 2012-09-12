@@ -1,0 +1,2 @@
+class NotAuthorizedError < RuntimeError
+end

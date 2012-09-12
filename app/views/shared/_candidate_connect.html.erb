@@ -1,0 +1,5 @@
+<% if user_signed_in? and NbecToken.exists?(:user_id => current_user.id) %>
+  <%= link_to "Disconnect", oauth_consumer_path(:nbec), :method => :delete %>
+<% else %>
+  <%= link_to "Candidate Connect", oauth_consumer_path(:nbec) %>
+<% end %>

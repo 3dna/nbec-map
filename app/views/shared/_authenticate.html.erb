@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+  <% if @current_token %>
+    Authenticated to <%= @current_token.class.service_name %>. <%= link_to "disconnect", oauth_consumer_path(:test), :method => :delete %>
+    Districts for AK: 
+    <ul>
+    <% @current_token.districts('AR').each do |district| %>
+      <li><%= district['name'] %></li>
+    <% end %>
+    </ul>
+  <% else %>
+    Authenticate to <%= link_to "Test", oauth_consumer_path(:test) %>
+  <% end %>
+<% else %>
+  <%= link_to "Log in", new_user_session_path %>
+<% end %>
