@@ -1,5 +1,44 @@
-<% if user_signed_in? and NbecToken.exists?(:user_id => current_user.id) %>
-  <%= link_to "Disconnect", oauth_consumer_path(:nbec), :method => :delete %>
+<% if user_signed_in? %>
+
+<h3> User details </h3>
+
+<div>
+<%= link_to "Sign out", destroy_user_session_url, :method => :delete %>
+</div>
+
+<% unless NbecToken.exists?(:user_id => current_user.id) %>
+
+<h3> Candidate details </h3>
+
+<p>
+  Before accessing NBEC's voter data, you must be authenticated
+  through NBEC.
+</p>
+
+<div>
+<%= link_to "Candidate Connect", oauth_consumer_path(:nbec) %>
+</div>
+
 <% else %>
-  <%= link_to "Candidate Connect", oauth_consumer_path(:nbec) %>
+
+<p>
+  You are currently authenticated as a candidate on NBEC.
+</p>
+
+<div>
+<%= link_to "Disconnect", oauth_consumer_path(:nbec), :method => :delete %>
+</div>
+
+<% end %>
+
+<% else %>
+  <p>
+    You must sign in as a registered user and authenticate yourself with
+    NBEC before being allowed to access the NBEC API.
+  </p>
+
+  <ul>
+    <li><%= link_to "Sign in",  new_user_session_url %></li>
+    <li><%= link_to "Register",  new_user_registration_url %></li>
+  </ul>
 <% end %>
